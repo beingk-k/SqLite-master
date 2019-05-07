@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,22 @@ public class MyHelper extends SQLiteOpenHelper {
             }
         }
         return dictionaryList;
+    }
+
+    public void UpdateMeaning (Word word){
+        try{
+            SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+            String qry = "UPDATE " + tblWord + " SET " + Meaning + "='" + word.getWord() + "' WHERE " + WordID + " = ?";
+            sqLiteDatabase.execSQL(qry, new String[] {String.valueOf(word.getWordId())});
+        } catch (Exception e){
+            Log.d("error", e.toString());
+        }
+    }
+
+    public void DeleteMeaning (String meaning){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.execSQL("DELETE FROM " + tblWord + " WHERE " + Meaning + "='"+ meaning+"'");
+        sqLiteDatabase.close();
     }
 
 }

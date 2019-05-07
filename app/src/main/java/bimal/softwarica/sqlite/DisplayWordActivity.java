@@ -65,8 +65,10 @@ public class DisplayWordActivity extends AppCompatActivity implements View.OnCli
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String key = parent.getItemAtPosition(position).toString();
                 String meaning = hashMap.get(key);
+
                 Intent intent = new Intent(DisplayWordActivity.this, MeaningActivity.class);
                 intent.putExtra("meaning", meaning);
+                intent.putExtra("word", key);
                 startActivity(intent);
             }
         });
@@ -96,6 +98,7 @@ public class DisplayWordActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String key = parent.getItemAtPosition(position).toString();
+
                 String meaning = hashMap.get(key);
                 Intent intent = new Intent(DisplayWordActivity.this, MeaningActivity.class);
                 intent.putExtra("meaning", meaning);

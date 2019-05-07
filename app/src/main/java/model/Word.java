@@ -6,6 +6,8 @@ public class Word {
     private String word;
     private String meaning;
 
+    public Word(){}
+
     public Word(int wordId, String word, String meaning) {
         WordId = wordId;
         this.word = word;
